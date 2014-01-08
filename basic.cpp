@@ -2,21 +2,19 @@
 #include<GL/gl.h>
 #include<GL/glu.h>
 #include <GL/glut.h>
-//#include <GL/OpenGL.h>
 
 //Initialize OpenGL 
 void init(void) {
     glClearColor(0.0,0.35,0.35,0.0); 
-//    glMatrixMode(GL_PROJECTION); 
     glOrtho(0.0,300.0,0.0,300.0,0.0,300.0);    
 } 
 
+//Draw circle by connecting polygon in steps of 2pie/no_of_steps
+//2pie = 360 deg
+//tx,ty - Translate in x,y direction
 void drawCircle(int radius,int tx,int ty,int r,int g,int b)
 {
     int points=360;
-//    glClearColor(0.0,0.0,0.0,0.0);
-
-//    glClear(GL_COLOR_BUFFER_BIT);
     glColor3ub(r,g,b);    
     glBegin(GL_POLYGON);
 
@@ -26,24 +24,16 @@ void drawCircle(int radius,int tx,int ty,int r,int g,int b)
         glVertex2f(cos(angle)*radius+tx,sin(angle)*radius+ty);
     }
     glEnd();
-
-
-//    glFlush();
 }
 
-void drawLines(void) {
-    
-    int points=360;
-
+void drawFace(void) {
     glClear(GL_COLOR_BUFFER_BIT);  
-//  glColor3f(1.0,0.0,0.0); 
-//  glBegin(GL_POLYGON);
-//  glPointSize(3.0);  
+    //draw 3 circles
     drawCircle(100,150,150,204,204,204);
-    //glColor3i(255,0,0);
     drawCircle(15,100,180,255,245,185);
     drawCircle(15,200,180,255,245,185);
     
+    //draw triangle
     glBegin(GL_POLYGON);
 
     glVertex2i(135,135);
@@ -52,6 +42,7 @@ void drawLines(void) {
 
     glEnd();
     
+    //draw semi-circle
     glColor3ub(255,245,185);    
     glBegin(GL_POLYGON);
     int radius=30,tx=150,ty=110;
@@ -62,6 +53,7 @@ void drawLines(void) {
     }
     glEnd();
     
+    // draw 2 ears - rectangles
     glBegin(GL_POLYGON);
 
     glVertex2i(247,160);
@@ -80,12 +72,7 @@ void drawLines(void) {
 
     glEnd();
 
-
-//    glVertex2d(180, 250);
-//    glVertex2d(100, 100);
-//    glEnd();
     glFlush();
-//    glutSwapBuffers();
 } 
 
 int main(int argc, char**argv) {

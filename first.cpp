@@ -17,15 +17,15 @@ void display( void )
 {
     //Clear the screen.
     glClear(GL_COLOR_BUFFER_BIT);
-    
-
-	glBegin(GL_LINES);
+  
+	glBegin(GL_LINES); // glBegin can take different values
+	
+	//TODO: Perform drawing here
+	
 	glEnd();
-    //TODO: Perform drawing here
 
-
-    //We just drew to the back buffer. Now we need to swap that with the
-    //front buffer to show it on screen.
+   	//We just drew to the back buffer. Now we need to swap that with the
+   	//front buffer to show it on screen.
     glutSwapBuffers();
 }
  

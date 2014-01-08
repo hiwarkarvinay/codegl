@@ -2,8 +2,10 @@
 #include<GL/gl.h>
 #include<GL/glu.h>
 #include <GL/glut.h>
-
-//Initialize OpenGL 
+#define BIG 255,255,255
+#define COLOR 174,33,98
+#define EYES 20,20,20
+//Initialize OpenGL here
 void init(void) {
     glClearColor(0.0,0.35,0.35,0.0); 
     glOrtho(0.0,300.0,0.0,300.0,0.0,300.0);    
@@ -29,10 +31,15 @@ void drawCircle(int radius,int tx,int ty,int r,int g,int b)
 void drawFace(void) {
     glClear(GL_COLOR_BUFFER_BIT);  
     //draw 3 circles
-    drawCircle(100,150,150,204,204,204);
-    drawCircle(15,100,180,255,245,185);
-    drawCircle(15,200,180,255,245,185);
+    drawCircle(100,150,150,BIG);
+    drawCircle(15,100,180,COLOR);
+    drawCircle(5,100,180,EYES);
+    drawCircle(15,200,180,COLOR);
+    drawCircle(5,200,180,EYES);
     
+//    drawCircle(15,100,180,255,245,185);
+//    drawCircle(15,200,180,255,245,185);
+    glColor3ub(COLOR);    
     //draw triangle
     glBegin(GL_POLYGON);
 
@@ -43,7 +50,7 @@ void drawFace(void) {
     glEnd();
     
     //draw semi-circle
-    glColor3ub(255,245,185);    
+    glColor3ub(COLOR);    
     glBegin(GL_POLYGON);
     int radius=30,tx=150,ty=110;
     for(int i=180;i<=360;++i)
@@ -83,6 +90,6 @@ int main(int argc, char**argv) {
 
     glutCreateWindow("Example"); 
     init(); 
-    glutDisplayFunc(drawLines); 
+    glutDisplayFunc(drawFace); 
     glutMainLoop();
 }
